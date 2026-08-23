@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Foodie - Home</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff8f0;
+            color: #333;
+        }
+
+        /* Navigation Bar */
+        header {
+            background-color: #ff6b35;
+            padding: 20px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #ffe0d2;
+        }
+
+        /* Home Section */
+        .home {
+            min-height: 550px;
+            padding: 60px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .home-text {
+            width: 50%;
+        }
+
+        .home-text h1 {
+            font-size: 50px;
+            color: #ff5722;
+            margin-bottom: 20px;
+        }
+
+        .home-text p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .order-btn {
+            background-color: #ff6b35;
+            color: white;
+
+            padding: 14px 30px;
+            border-radius: 30px;
+
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .order-btn:hover {
+            background-color: #e64a19;
+        }
+
+        /* Food Image */
+        .home-image {
+            width: 45%;
+        }
+
+        .home-image img {
+            width: 100%;
+            border-radius: 25px;
+        }
+
+        /* Popular Food */
+        .popular {
+            padding: 50px 8%;
+            text-align: center;
+        }
+
+        .popular h2 {
+            color: #ff5722;
+            font-size: 35px;
+            margin-bottom: 35px;
+        }
+
+        .food-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .food-card {
+            background-color: white;
+            width: 280px;
+
+            border-radius: 15px;
+            padding-bottom: 20px;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+
+            border-radius: 15px 15px 0 0;
+        }
+
+        .food-card h3 {
+            margin: 15px 0 8px;
+        }
+
+        .food-card p {
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #ff5722;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .food-btn {
+            background-color: #ff6b35;
+            color: white;
+
+            border: none;
+            padding: 10px 20px;
+
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .food-btn:hover {
+            background-color: #e64a19;
+        }
+
+        .food-btn {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .about {
+            padding: 55px 8%;
+            color: white;
+            background-color: #ff6b35;
+            text-align: center;
+        }
+
+        .about h2 {
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .about p {
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 8px;
+            }
+
+            .home {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .home-text {
+                width: 100%;
+            }
+
+            .home-text h1 {
+                font-size: 38px;
+            }
+
+            .home-image {
+                width: 100%;
+            }
+
+            .food-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <div class="logo">
+            🍔 Foodie
+        </div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#foods">Foods</a>
+            <a href="#about">About</a>
+            <a href="sign up.html">Login</a>
+            <a href="sign up.html">Sign Up</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Home -->
+    <section class="home">
+
+        <div class="home-text">
+
+            <h1>
+                Delicious Food
+                For You
+            </h1>
+
+            <p>
+                Welcome to Foodie!
+                Discover delicious food,
+                fresh ingredients, and
+                affordable prices.
+            </p>
+
+            <a href="#foods" class="order-btn">
+                Order Now
+            </a>
+
+        </div>
+
+
+        <div class="home-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+                alt="Delicious Burger">
+
+        </div>
+
+    </section>
+
+
+    <!-- Popular Food -->
+    <section class="popular" id="foods">
+
+        <h2>
+            Popular Foods
+        </h2>
+
+
+        <div class="food-container">
+
+            <!-- Burger -->
+            <div class="food-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80"
+                    alt="Burger">
+
+                <h3>
+                    Cheese Burger
+                </h3>
+
+                <p>
+                    Delicious beef burger
+                </p>
+
+                <div class="price">
+                    $5.00
+                </div>
+
+                <a class="food-btn" href="sign up.html">
+                    Order
+                </a>
+
+            </div>
+
+
+            <!-- Pizza -->
+            <div class="food-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80"
+                    alt="Pizza">
+
+                <h3>
+                    Cheese Pizza
+                </h3>
+
+                <p>
+                    Hot and fresh pizza
+                </p>
+
+                <div class="price">
+                    $8.00
+                </div>
+
+                <a class="food-btn" href="sign up.html">
+                    Order
+                </a>
+
+            </div>
+
+
+            <!-- Fries -->
+            <div class="food-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=600&q=80"
+                    alt="French Fries">
+
+                <h3>
+                    French Fries
+                </h3>
+
+                <p>
+                    Crispy golden fries
+                </p>
+
+                <div class="price">
+                    $3.00
+                </div>
+
+                <a class="food-btn" href="sign up.html">
+                    Order
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About -->
+    <section class="about" id="about">
+        <h2>Fresh food, made with care</h2>
+        <p>Foodie brings your favorite comfort foods to your table with fresh ingredients, friendly service, and simple prices.</p>
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="contact">
+
+        <p>
+            © 2026 Foodie | All Rights Reserved
+        </p>
+
+    </footer>
+
+</body>
+</html>
