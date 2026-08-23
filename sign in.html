@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sign in | Foodie</title>
+	<style>
+		:root { --orange: #ff6b35; --dark-orange: #e64a19; --ink: #33251f; --muted: #756b64; --line: #e1d8d0; --paper: #fff8f0; }
+		* { box-sizing: border-box; }
+		body { min-height: 100vh; margin: 0; color: var(--ink); background: var(--paper); font-family: Arial, sans-serif; }
+		.page { min-height: 100vh; display: grid; place-items: center; padding: 32px 18px; }
+		.login-wrap { width: min(100%, 430px); }
+		.brand { display: block; margin-bottom: 24px; color: var(--orange); font-size: 28px; font-weight: bold; text-align: center; text-decoration: none; }
+		.card { padding: 34px; border: 1px solid var(--line); border-radius: 14px; background: white; box-shadow: 0 8px 24px rgba(51,37,31,.08); }
+		h1 { margin: 0 0 10px; font-family: Georgia, serif; font-size: 32px; font-weight: normal; text-align: center; }
+		.intro { margin: 0 0 28px; color: var(--muted); line-height: 1.5; text-align: center; }
+		.field { margin-bottom: 20px; }
+		label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: bold; }
+		input[type="email"], input[type="password"] { width: 100%; padding: 13px; border: 1px solid var(--line); border-radius: 7px; font: inherit; font-size: 16px; }
+		input:focus { outline: 2px solid #ffb08f; border-color: var(--orange); }
+		.options { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 4px 0 22px; font-size: 13px; }
+		.remember { display: flex; align-items: center; gap: 7px; color: var(--muted); font-weight: normal; }
+		.remember input { accent-color: var(--orange); }
+		a { color: var(--dark-orange); text-decoration: none; }
+		a:hover { text-decoration: underline; }
+		.login-button { width: 100%; padding: 14px; border: 0; border-radius: 7px; color: white; background: var(--orange); font-size: 16px; font-weight: bold; cursor: pointer; }
+		.login-button:hover { background: var(--dark-orange); }
+		.message { display: none; margin: 18px 0 0; padding: 12px; border-radius: 7px; color: #28752d; background: #e8f7e8; font-size: 14px; text-align: center; }
+		.signup { margin: 16px 0 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 14px; text-align: center; }
+		.back { display: block; margin-top: 22px; color: var(--muted); font-size: 13px; text-align: center; }
+		@media (max-width: 420px) { .card { padding: 26px 20px; } .options { align-items: flex-start; flex-direction: column; } }
+	</style>
+</head>
+<body>
+	<main class="page">
+		<div class="login-wrap">
+			<a class="brand" href="home.html">Foodie</a>
+			<form class="card" id="login-form">
+				<h1>Welcome back</h1>
+				<p class="intro">Sign in to order your favorite meals faster.</p>
+
+				<div class="field">
+					<label for="email">Email address</label>
+					<input id="email" name="email" type="email" autocomplete="email" required>
+				</div>
+
+				<div class="field">
+					<label for="password">Password</label>
+					<input id="password" name="password" type="password" autocomplete="current-password" required>
+				</div>
+
+				<div class="options">
+					<label class="remember"><input type="checkbox" name="remember"> Remember me</label>
+					<a href="#forgot-password">Forgot password?</a>
+				</div>
+
+				<button class="login-button" type="submit">Sign in</button>
+				<p class="message" id="message" role="status">You are signed in. Welcome back!</p>
+			</form>
+
+			<p class="signup">New to Foodie? <a href="sign up.html">Create an account</a></p>
+			<a class="back" href="home.html">&larr; Back to homepage</a>
+		</div>
+	</main>
+
+	<script>
+		document.getElementById('login-form').addEventListener('submit', function (event) {
+			event.preventDefault();
+			document.getElementById('message').style.display = 'block';
+		});
+	</script>
+</body>
+</html>
