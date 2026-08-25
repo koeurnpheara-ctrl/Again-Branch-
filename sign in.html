@@ -18,14 +18,21 @@
 		label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: bold; }
 		input[type="email"], input[type="password"] { width: 100%; padding: 13px; border: 1px solid var(--line); border-radius: 7px; font: inherit; font-size: 16px; }
 		input:focus { outline: 2px solid #ffb08f; border-color: var(--orange); }
+		.password-container { position: relative; }
+		.toggle-password { position: absolute; right: 12px; top: 38px; cursor: pointer; color: var(--muted); font-size: 18px; border: none; background: none; padding: 0; }
+		.toggle-password:hover { color: var(--ink); }
+		.field-error { margin-top: 4px; font-size: 13px; color: #d32f2f; display: none; }
 		.options { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 4px 0 22px; font-size: 13px; }
 		.remember { display: flex; align-items: center; gap: 7px; color: var(--muted); font-weight: normal; }
 		.remember input { accent-color: var(--orange); }
 		a { color: var(--dark-orange); text-decoration: none; }
 		a:hover { text-decoration: underline; }
-		.login-button { width: 100%; padding: 14px; border: 0; border-radius: 7px; color: white; background: var(--orange); font-size: 16px; font-weight: bold; cursor: pointer; }
+		.login-button { width: 100%; padding: 14px; border: 0; border-radius: 7px; color: white; background: var(--orange); font-size: 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
 		.login-button:hover { background: var(--dark-orange); }
-		.message { display: none; margin: 18px 0 0; padding: 12px; border-radius: 7px; color: #28752d; background: #e8f7e8; font-size: 14px; text-align: center; }
+		.login-button:disabled { background: var(--muted); cursor: not-allowed; }
+		.message { display: none; margin: 18px 0 0; padding: 12px; border-radius: 7px; font-size: 14px; text-align: center; }
+		.message.success { color: #28752d; background: #e8f7e8; }
+		.message.error { color: #d32f2f; background: #fde8e8; }
 		.signup { margin: 16px 0 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 14px; text-align: center; }
 		.back { display: block; margin-top: 22px; color: var(--muted); font-size: 13px; text-align: center; }
 		@media (max-width: 420px) { .card { padding: 26px 20px; } .options { align-items: flex-start; flex-direction: column; } }
@@ -42,11 +49,16 @@
 				<div class="field">
 					<label for="email">Email address</label>
 					<input id="email" name="email" type="email" autocomplete="email" required>
+					<div class="field-error" id="email-error"></div>
 				</div>
 
 				<div class="field">
 					<label for="password">Password</label>
-					<input id="password" name="password" type="password" autocomplete="current-password" required>
+					<div class="password-container">
+						<input id="password" name="password" type="password" autocomplete="current-password" required>
+						<button type="button" class="toggle-password" id="toggle-password" aria-label="Toggle password visibility">👁</button>
+					</div>
+					<div class="field-error" id="password-error"></div>
 				</div>
 
 				<div class="options">
@@ -64,9 +76,83 @@
 	</main>
 
 	<script>
-		document.getElementById('login-form').addEventListener('submit', function (event) {
+		const form = document.getElementById('login-form');
+		const emailInput = document.getElementById('email');
+		const passwordInput = document.getElementById('password');
+		const toggleBtn = document.getElementById('toggle-password');
+		const messageEl = document.getElementById('message');
+		const emailError = document.getElementById('email-error');
+		const passwordError = document.getElementById('password-error');
+
+		// Toggle password visibility
+		toggleBtn.addEventListener('click', function (e) {
+			e.preventDefault();
+			const type = passwordInput.type === 'password' ? 'text' : 'password';
+			passwordInput.type = type;
+			toggleBtn.textContent = type === 'password' ? '👁' : '🙈';
+		});
+
+		// Validate email format
+		function validateEmail(email) {
+			const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+			return regex.test(email);
+		}
+
+		// Clear error messages on input
+		emailInput.addEventListener('input', function () {
+			emailError.style.display = 'none';
+		});
+
+		passwordInput.addEventListener('input', function () {
+			passwordError.style.display = 'none';
+		});
+
+		// Handle form submission
+		form.addEventListener('submit', function (event) {
 			event.preventDefault();
-			document.getElementById('message').style.display = 'block';
+
+			const email = emailInput.value.trim();
+			const password = passwordInput.value;
+			let isValid = true;
+
+			// Reset errors
+			emailError.style.display = 'none';
+			passwordError.style.display = 'none';
+			messageEl.style.display = 'none';
+
+			// Validate email
+			if (!email) {
+				emailError.textContent = 'Email address is required';
+				emailError.style.display = 'block';
+				isValid = false;
+			} else if (!validateEmail(email)) {
+				emailError.textContent = 'Please enter a valid email address';
+				emailError.style.display = 'block';
+				isValid = false;
+			}
+
+			// Validate password
+			if (!password) {
+				passwordError.textContent = 'Password is required';
+				passwordError.style.display = 'block';
+				isValid = false;
+			} else if (password.length < 6) {
+				passwordError.textContent = 'Password must be at least 6 characters';
+				passwordError.style.display = 'block';
+				isValid = false;
+			}
+
+			// If valid, show success message
+			if (isValid) {
+				messageEl.className = 'message success';
+				messageEl.textContent = 'You are signed in. Welcome back!';
+				messageEl.style.display = 'block';
+
+				// Optional: Redirect after 2 seconds
+				setTimeout(() => {
+					window.location.href = 'home.html';
+				}, 2000);
+			}
 		});
 	</script>
 </body>
